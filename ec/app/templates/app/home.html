@@ -1,0 +1,46 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block banner-slider %}
+<br>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'app/images/banner/banner.png' %}" class="d-block w-50 mx-auto custom-banner-image" alt="banner image">
+    </div>
+</div>
+{% endblock banner-slider %}
+
+{% block information %}
+<div class="container mt-5">
+    <div class="card border-dark">
+        <div class="col text-center">
+            <h1>¡Bienvenido a AgroNova!</h1>
+            <p class="fs-5 mt-3">
+                Descubre lo mejor del campo en un solo lugar. Explora nuestra amplia selección de productos agrícolas nariñenses, frescos y de alta calidad, traídos directamente de los productores. Desde frutas y verduras de temporada hasta granos y productos locales.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock information %}
+
+{% block main-content %}
+<div class="container mt-5 mb-5">
+    <h2 class="text-center mb-4">Explora nuestra variedad de productos</h2>
+    <div class="row">
+        {% for brand, image, category_code in brands %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 text-center border-0 shadow-sm">
+                <a href="{% url 'category' category_code %}" class="stretched-link"></a>
+                <img src="{% static image %}" class="card-img-top img-fluid p-4" alt="{{ brand }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ brand }}</h5>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock main-content %}
+
